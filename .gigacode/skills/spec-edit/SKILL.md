@@ -15,9 +15,9 @@ description: Создание и обновление спецификаций �
 ## Правила проекта
 
 **ОБЯЗАТЕЛЬНО** следуй гайдлайнам:
-- [`guidelines/specifications-guidelines.md`](docs/guidelines/specifications-guidelines.md) — структура, ID, правила написания
-- [`guidelines/implementation-guideline.md`](docs/guidelines/implementation-guideline.md) — связь spec ↔ реализация
-- [`guidelines/documentation-guidelines.md`](docs/guidelines/agent-documentation-guidelines.md) — структура docs/, фронтматтер
+- [`guidelines/specification-guidelines.md`](../../guidelines/specification-guidelines.md) — структура, ID, правила написания
+- [`guidelines/implementation-guidelines.md`](../../guidelines/implementation-guidelines.md) — связь spec ↔ реализация
+- [`guidelines/documentation-guidelines.md`](../../guidelines/documentation-guidelines.md) — структура docs/, фронтматтер
 
 ## Сценарии
 

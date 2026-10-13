@@ -10,10 +10,9 @@ description: Реализация или обновление кода в соо
 ## Правила проекта
 
 **ОБЯЗАТЕЛЬНО** следуй гайдлайнам:
-- [`guidelines/implementation-guideline.md`](docs/guidelines/implementation-guideline.md) — основной гайдлайн реализации
-- [`guidelines/specifications-guidelines.md`](docs/guidelines/specifications-guidelines.md) — структура спецификаций, ID, NEEDS_CLARIFICATION
-- [`guidelines/documentation-guidelines.md`](docs/guidelines/agent-documentation-guidelines.md) — структура docs/, фронтматтер
-- [`docs/architecture.md`](docs/architecture.md) — зависимости модулей, паттерны
+- [`guidelines/implementation-guidelines.md`](../../guidelines/implementation-guidelines.md) — основной гайдлайн реализации
+- [`guidelines/specification-guidelines.md`](../../guidelines/specification-guidelines.md) — структура спецификаций, ID, NEEDS_CLARIFICATION
+- [`guidelines/documentation-guidelines.md`](../../guidelines/documentation-guidelines.md) — структура docs/, фронтматтер
 
 ## Сценарии
 

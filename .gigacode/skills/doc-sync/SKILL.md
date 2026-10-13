@@ -36,7 +36,7 @@ description: Обновление документации проекта в с�
 ## Правила работы
 
 **ВСЕГДА** следуй правилам проекта:
-- [`guidelines/documentation-guidelines.md`](docs/guidelines/agent-documentation-guidelines.md) — структура, фронтматтер, стиль
+- [`guidelines/documentation-guidelines.md`](../../guidelines/documentation-guidelines.md) — структура, фронтматтер, стиль
 
 **Лимиты:** один файл ≤ 200 строк, фронтматтер с `last_updated` и `scope`.
 

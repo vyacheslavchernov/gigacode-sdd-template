@@ -504,4 +504,4 @@ scope: guidelines
 
 ## Дополнительные материалы
 
-Детальные правила обновления `GIGACODE.md` — в [`guidelines/gigacode-md-guidelines.md`](guidelines/gigacode-md-guidelines.md).
+Детальные правила обновления `GIGACODE.md` — в [`guidelines/gigacode-md-guidelines.md`](../../guidelines/gigacode-md-guidelines.md).
