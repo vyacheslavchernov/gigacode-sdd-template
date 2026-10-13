@@ -202,12 +202,13 @@ go version
 
 ### Шаг 3: Инициализация структуры проекта
 
+**ВАЖНО:** Проект инициализируется **напрямую в текущем рабочем каталоге**. Не создавай отдельную поддиректорию с именем проекта (`project-name/`). Вся структура проекта разворачивается в корне.
+
 Создай структуру на основе выбранного стека:
 
 #### TypeScript/Node.js (npm + vitest)
 
 ```
-project-name/
 ├── src/
 │   ├── index.ts
 │   └── ...
@@ -225,7 +226,6 @@ project-name/
 #### Python (uv + pytest)
 
 ```
-project-name/
 ├── src/
 │   └── {package_name}/
 │       ├── __init__.py
@@ -241,7 +241,6 @@ project-name/
 #### Java (Maven + JUnit 5)
 
 ```
-project-name/
 ├── src/
 │   ├── main/
 │   │   └── java/
@@ -254,7 +253,6 @@ project-name/
 #### Rust (Cargo)
 
 ```
-project-name/
 ├── src/
 │   └── lib.rs
 │   └── main.rs (если binary)
@@ -266,7 +264,6 @@ project-name/
 #### Go (go mod)
 
 ```
-project-name/
 ├── pkg/
 ├── internal/
 ├── cmd/
@@ -279,7 +276,6 @@ project-name/
 #### CLI (ink / rich / clap / cobra)
 
 ```
-project-name/
 ├── src/
 │   ├── index.{ext}
 │   ├── cli.{ext}          # настройка CLI-фреймворка
@@ -295,7 +291,6 @@ project-name/
 #### GUI — Web (Next.js / Streamlit / Tauri)
 
 ```
-project-name/
 ├── src/
 │   ├── components/
 │   │   ├── ui/             # переиспользуемые UI-компоненты
@@ -314,7 +309,6 @@ project-name/
 #### GUI — Desktop (PyQt6 / JavaFX / Tauri)
 
 ```
-project-name/
 ├── src/
 │   ├── main/
 │   │   └── ui/
@@ -330,7 +324,6 @@ project-name/
 #### API-only
 
 ```
-project-name/
 ├── src/
 │   ├── api/
 │   │   ├── routes/
@@ -1068,7 +1061,7 @@ scope: project
 6. Инструменты: npm, vitest, prettier, eslint
 7. Дополнительно: CI/CD, .gitignore
 
-→ Создана структура проекта (Next.js App Router)
+→ Создана структура проекта в корне (Next.js App Router)
 → Сгенерированы гайдлайны + ui-style-guidelines.md
 → Проект подготовлен: `npm install` ✓, `npm run build` ✓, `npm run test` ✓
 → Обновлены README.md и GIGACODE.md
@@ -1088,7 +1081,7 @@ scope: project
 6. Инструменты: uv, pytest, ruff
 7. Дополнительно: Dockerfile
 
-→ Создана структура проекта (CLI-команды)
+→ Создана структура проекта в корне (CLI-команды)
 → Сгенерированы гайдлайны + ui-style-guidelines.md (CLI-секция)
 → Проект подготовлен: `uv sync` ✓, `uv run pytest` ✓
 → Обновлены README.md и GIGACODE.md
@@ -1107,7 +1100,7 @@ scope: project
 5. Инструменты: Maven, JUnit 5, Spring Boot
 6. Дополнительно: Dockerfile, CI/CD
 
-→ Создана структура проекта (Spring Boot)
+→ Создана структура проекта в корне (Spring Boot)
 → Сгенерированы гайдлайны (без ui-style-guidelines — API-only)
 → Проект подготовлен: `mvn compile` ✓, `mvn test` ✓
 → Обновлены README.md и GIGACODE.md
@@ -1121,6 +1114,7 @@ scope: project
 - **Предлагай инструкции по установке** если инструмент отсутствует
 - **Подставляй реальные значения** в гайдлайны — не оставляй placeholder'ов
 - **Проект должен быть готов к работе** — зависимости установлены, сборка прошла, тесты прошли (или это заглушки)
+- **Не создавай поддиректорию с именем проекта** — вся структура разворачивается **напрямую в текущем рабочем каталоге** (корне)
 - **Не ломай** существующую структуру SpecDriven-шаблона
 - **Сохраняй** `specs/`, `docs/`, `.gigacode/` без изменений
 
