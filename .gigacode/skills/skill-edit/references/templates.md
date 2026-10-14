@@ -1,4 +1,4 @@
-# Templates -- Skill Create
+# Templates -- Skill Edit
 
 See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 
@@ -64,12 +64,6 @@ description: {краткое описание назначения, тригге
 
 Чек-листы — в [`references/checklists.md`](references/checklists.md).
 
-## Prompts
-
-Промпты для агентов — в [`references/prompts.md`](references/prompts.md).
-
-> **Правило:** Если файл `references/prompts.md` не нужен — секцию не создавай. Любая секция в SKILL.md должна ссылаться на существующий файл в `references/`.
-
 ## Critical Rules
 
 - **ALWAYS** {правило}
@@ -77,6 +71,12 @@ description: {краткое описание назначения, тригге
 ```
 
 ## Шаблон references/workflows.md
+
+```yaml
+---
+last_updated: {YYYY-MM-DD}
+scope: skill-reference
+---
 
 ```markdown
 # Workflows -- {Skill Name}
@@ -105,8 +105,8 @@ See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 
 ```yaml
 ---
-name: example-skill
-scope: skill
+last_updated: {YYYY-MM-DD}
+scope: skill-reference
 ---
 ```
 

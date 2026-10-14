@@ -1,4 +1,4 @@
-# Examples -- Skill Create
+# Examples -- Skill Edit
 
 See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 
