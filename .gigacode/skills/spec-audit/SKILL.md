@@ -1,4 +1,5 @@
 ---
+last_updated: 2026-10-14
 name: spec-audit
 description: Аудит спецификаций — проверка соответствия между кодом, спецификациями, тестами и документацией. Триггеры: "аудит спецификаций", "spec audit", "проверь соответствие спецификации", "аудит модуля {название}". Проверяет: код ↔ спецификация, тесты ↔ спецификация, документация ↔ код + тесты.
 ---
@@ -9,31 +10,9 @@ description: Аудит спецификаций — проверка соотв
 
 ## Три уровня проверки
 
-### 1. Код ↔ Спецификация
-
-Проверяет, что реализация соответствует спецификации:
-- Все публичные методы/классы из spec реализованы в коде
-- Поведение кода соответствует описанному в spec (Behavior, Business rules)
-- Исключения в spec бросаются в коде
-- Acceptance criteria из spec проверены на соответствие коду
-- Нет в spec, но нет в коде
-- Нет в коде, но есть в spec (и не является NEEDS_CLARIFICATION)
-
-### 2. Тесты ↔ Спецификация
-
-Проверяет, что спецификация покрыта тестами:
-- Каждый acceptance criterion имеет хотя бы один тест
-- Основные сценарии (Behavior) покрыты тестами
-- Ошибки и исключения из spec проверены тестами
-- Граничные случаи покрыты тестами
-
-### 3. Документация ↔ Код + Тесты
-
-Проверяет, что документация актуальна:
-- `docs/modules/*.md` описывает реальный публичный API
-- `docs/packages/*/README.md` соответствует коду
-- `README.md` модулей — примеры и конфигурация актуальны
-- Нет расхождений между spec и docs
+1. **Код ↔ Спецификация** — реализация соответствует spec (API, поведение, исключения)
+2. **Тесты ↔ Спецификация** — acceptance criteria и поведение покрыты тестами
+3. **Документация ↔ Код + Тесты** — docs актуальны и соответствуют коду
 
 ## Workflow
 
@@ -54,126 +33,20 @@ description: Аудит спецификаций — проверка соотв
 - **Ошибки** — секция `Errors` (ситуации и исключения)
 - **Acceptance criteria** — чек-лист в `Acceptance criteria`
 
-### Шаг 3: Проверка кода ↔ спецификации
+### Шаг 3-5: Проверка и формирование отчёта
 
-Для каждого элемента spec:
-1. Найди соответствующий класс/метод в коде
-2. Проверь сигнатуру — совпадает ли с spec?
-3. Проверь поведение — соответствует ли описанному?
-4. Проверь исключения — бросаются ли те, что в spec?
-5. Отметь найденные расхождения
+Детальные шаги — в [`references/workflows.md`](references/workflows.md).
 
-### Шаг 4: Проверка тестов ↔ спецификация
+## Ссылки на детали
 
-Для каждого acceptance criterion:
-1. Найди тест, который его проверяет
-2. Проверь, что тест покрывает сценарий из spec
-3. Отметь непокрытые критерии
-
-### Шаг 5: Проверка документации ↔ код + тесты
-
-1. Сравни `docs/modules/*.md` с реальным кодом
-2. Сравни `README.md` модулей с API
-3. Отметь расхождения
-
-### Шаг 6: Формирование отчёта
-
-См. раздел "Отчёт" ниже.
-
-## Отчёт
-
-Формат отчёта:
-
-```
-# Spec Audit Report: {spec-id}
-
-## Summary
-- Spec: {path}
-- Scope: {full project / module / specific file}
-- Date: {date}
-
-## 1. Код ↔ Спецификация
-
-### Соответствует
-- [x] {element} — {comment}
-
-### Расхождения
-- [ ] {element} — spec: {что должно быть}, code: {что есть}
-
-## 2. Тесты ↔ Спецификация
-
-### Покрыто
-- [x] {acceptance criterion} → {test-file}
-
-### Не покрыто
-- [ ] {acceptance criterion} — нет теста
-
-## 3. Документация ↔ Код + Тесты
-
-### Соответствует
-- [x] {doc-file} — {comment}
-
-### Расхождения
-- [ ] {doc-file} — docs: {что написано}, code: {что есть}
-
-## Итого
-- Расхождений код↔spec: {N}
-- Непокрытых acceptance criteria: {N}
-- Расхождений docs↔code: {N}
-- Статус аудита: {PASS / WARN / FAIL}
-
-## Обновление статуса спецификации
-
-На основе результатов аудита определи новый статус спецификации:
-
-| Статус аудита | Новый статус spec | Действие |
-|---|---|---|
-| **PASS** | `IMPLEMENTED_STABLE` | Проект соответствует spec — обновить статус в файле spec |
-| **WARN** | `IMPLEMENTED_NEED_WORK` | Есть расхождения — обновить статус в файле spec |
-| **FAIL** | `IMPLEMENTED_NEED_WORK` | Критические расхождения — обновить статус в файле spec |
-
-**Правила:**
-- Если в spec есть `NEEDS_CLARIFICATION` — статус не меняй (остаётся `DRAFT`)
-- Статус обновляй только если пользователь запросил
-- Укажи новый статус в отчёте
-
-```
-## Статус спецификации
-- Текущий: {DRAFT | IMPLEMENTED_STABLE | IMPLEMENTED_NEED_WORK}
-- Новый: {DRAFT | IMPLEMENTED_STABLE | IMPLEMENTED_NEED_WORK}
-- Причина: {почему такой статус}
-```
-
-**Статус аудита:**
-- **PASS** — нет расхождений, всё покрыто
-- **WARN** — есть мелкие расхождения или непокрытые критерии
-- **FAIL** — есть критические расхождения (missing API, wrong behavior, untested errors)
-
-## Критические расхождения
-
-**FAIL** если:
-- Публичный метод из spec не реализован в коде
-- Поведение кода противоречит spec (не то же самое)
-- Исключение из spec не бросается в коде
-- Acceptance criterion не покрыт тестом (кроме NEEDS_CLARIFICATION)
-
-## Работа с NEEDS_CLARIFICATION
-
-Если в spec есть `NEEDS_CLARIFICATION`:
-- Отметь его в отчёте
-- Не считай за расхождение — это ожидаемое состояние
-- Отрази в разделе "Непокрыто" с пометкой "NEEDS_CLARIFICATION"
+- [`references/workflows.md`](references/workflows.md) — детальные workflow для каждого уровня проверки
+- [`references/rules.md`](references/rules.md) — правила проверки, статусы, NEEDS_CLARIFICATION
+- [`references/templates.md`](references/templates.md) — формат отчёта, статусы аудита
+- [`references/examples.md`](references/examples.md) — примеры типичных расхождений и результатов аудита
+- [`references/checklists.md`](references/checklists.md) — чек-лист аудита
 
 ## Правила проекта
 
-Опирайся на гайдлайны проекта:
-
-- [`guidelines/specifications-guidelines.md`](docs/guidelines/specifications-guidelines.md) — правила написания спецификаций, структура, ID, NEEDS_CLARIFICATION
-- [`guidelines/implementation-guideline.md`](docs/guidelines/implementation-guideline.md) — правила реализации, тесты, документация, завершение
-- [`guidelines/documentation-guidelines.md`](docs/guidelines/agent-documentation-guidelines.md) — структура docs/, фронтматтер, стиль
-
-## Дополнительные материалы
-
-Подробные инструкции — в гайдлайнах проекта:
-- [`guidelines/specification-guidelines.md`](../../guidelines/specification-guidelines.md) — структура спецификаций, ID, NEEDS_CLARIFICATION
-- [`guideli                                                                                                                                                                                      
+- [`guidelines/specification-guidelines.md`](../../../guidelines/specification-guidelines.md) — структура спецификаций, ID, NEEDS_CLARIFICATION, статусы
+- [`guidelines/implementation-guidelines.md`](../../../guidelines/implementation-guidelines.md) — правила реализации, тесты, завершение
+- [`guidelines/documentation-guidelines.md`](../../../guidelines/documentation-guidelines.md) — структура docs/, фронтматтер, стиль
