@@ -11,13 +11,7 @@ See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 
 ---
 
-## Правила использования суб-агентов
-
-Правила делегирования, параллелизма и форматы отчётов -- в [`workflows.md`](workflows.md).
-
-### Формат отчётов суб-агентов
-
-Каждый агент должен вернуть структурированный отчёт по шаблону в [`templates.md`](templates.md).
+Правила написания промптов -- в [`rules.md`](rules.md).
 
 ---
 
@@ -44,14 +38,11 @@ See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
    - Основное назначение файла
    - Объём контента (примерное количество строк)
 
-3. Опиши текущий функционал скилла на основе SKILL.md:
-   - Что делает скилл
-   - Какие сценарии поддерживает
-   - Ключевые правила
+3. Опиши текущий функционал скилла на основе SKILL.md.
 
 ## Формат отчёта
 
-Возврати результат в формате File Inventory Report -- см. [`templates.md`](templates.md).
+См. [`templates.md`](templates.md) -- раздел "Формат отчёта: File Inventory Report".
 ```
 
 ---
@@ -68,19 +59,13 @@ See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 Название скилла: {skill-name}
 Путь к скиллу: .gigacode/skills/{skill-name}/
 
-## Шаги
+## Правила проверки
 
-1. Прочитай SKILL.md и все файлы references/*.
-2. Для каждой секции SKILL.md проверь:
-   - Есть ли аналогичный контент в references/?
-   - Если да -- это дублирование (SKILL.md должен содержать только ссылку)
-3. Для каждого файла references/ проверь:
-   - Есть ли дублирование контента в другом файле references/?
-   - Если да -- нужно объединить
+См. [`workflows.md`](workflows.md) -- раздел "Проверка дублирования".
 
 ## Формат отчёта
 
-Возврати результат в формате Duplicate Check Report (Internal) -- см. [`templates.md`](templates.md).
+См. [`templates.md`](templates.md) -- раздел "Формат отчёта: Duplicate Check Report (Internal)".
 ```
 
 ---
@@ -97,18 +82,13 @@ See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 Название скилла: {skill-name}
 Путь к скиллу: .gigacode/skills/{skill-name}/
 
-## Шаги
+## Правила проверки
 
-1. Извлеки все ссылки на `guidelines/`, `docs/`, `GIGACODE.md` из SKILL.md и references/*.
-2. Прочитай целевые файлы.
-3. Для каждой ссылки проверь:
-   - Не дублирует ли скилл контент из этого файла?
-   - Если да -- заменить на ссылку
-4. Проверь, нет ли в скилле контента, который уже описан в guidelines/ -- если да, оставить только ссылку.
+См. [`workflows.md`](workflows.md) -- раздел "Ссылки на docs/ и guidelines/".
 
 ## Формат отчёта
 
-Возврати результат в формате Duplicate Check Report (External) -- см. [`templates.md`](templates.md).
+См. [`templates.md`](templates.md) -- раздел "Формат отчёта: Duplicate Check Report (External)".
 ```
 
 ---
@@ -125,18 +105,13 @@ See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 Название скилла: {skill-name}
 Путь к скиллу: .gigacode/skills/{skill-name}/
 
-## Шаги
+## Правила проверки
 
-1. Извлеки все ссылки на `guidelines/`, `docs/`, `GIGACODE.md` из SKILL.md и references/*.
-2. Проверь существование каждого целевого файла.
-3. Для существующих файлов проверь:
-   - Не дублирует ли скилл контент из этого файла?
-   - Если да -- заменить на ссылку
-4. Для несуществующих файлов зафиксировать ошибку.
+См. [`workflows.md`](workflows.md) -- раздел "Ссылки на docs/ и guidelines/".
 
 ## Формат отчёта
 
-Возврати результат в формате Link Check Report -- см. [`templates.md`](templates.md).
+См. [`templates.md`](templates.md) -- раздел "Формат отчёта: Link Check Report".
 ```
 
 ---
@@ -153,29 +128,13 @@ See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 Название скилла: {skill-name}
 Путь к скиллу: .gigacode/skills/{skill-name}/
 
-## Шаги
+## Правила проверки
 
-1. **Фронтматтер:**
-   - Проверь обязательные поля в SKILL.md: `name`, `last_updated`, `scope`, `description`
-   - Проверь поля в файлах references/: `last_updated`, `scope: skill-reference`
-   - Убедись, что поля консистентны
-
-2. **Кросс-ссылки:**
-   - SKILL.md → references/*: все ссылки ведут на существующие файлы
-   - references/* → SKILL.md: каждый файл ссылается обратно на SKILL.md
-   - Нет ли сломанных ссылок
-
-3. **Терминология:**
-   - Нет ли различий в терминах между SKILL.md и references/
-   - Например: SKILL.md "{A}" vs references/ "{B}"
-
-4. **Противоречия:**
-   - Нет ли противоречий в шагах workflow
-   - Нет ли противоречий в правилах
+См. [`templates.md`](templates.md) -- раздел "Согласованность".
 
 ## Формат отчёта
 
-Возврати результат в формате Consistency Check Report -- см. [`templates.md`](templates.md).
+См. [`templates.md`](templates.md) -- раздел "Формат отчёта: Consistency Check Report".
 ```
 
 ---
@@ -200,15 +159,11 @@ See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 
 ## Правила
 
-1. Работай **только** с каталогом скилла {skill-name}
-2. Не ломай существующие кросс-ссылки
-3. Сохраняй структуру и форматирование файлов
-4. Не удаляй контент без необходимости
-5. Если задача затрагивает несколько файлов -- выполни все изменения атомарно
+См. [`rules.md`](rules.md) -- разделы "Что ОСТАВЛЯТЬ в SKILL.md", "Что УДАЛЯТЬ из SKILL.md", "Кросс-ссылки".
 
 ## Формат отчёта
 
-Возврати результат в формате Refactoring Report -- см. [`templates.md`](templates.md).
+См. [`templates.md`](templates.md) -- раздел "Формат отчёта: Refactoring Report".
 ```
 
 ---
