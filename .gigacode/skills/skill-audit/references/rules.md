@@ -1,3 +1,8 @@
+---
+last_updated: 2026-10-14
+scope: skill-reference
+---
+
 # Rules — Skill Audit
 
 Правила рефакторинга скиллов.
