@@ -6,6 +6,14 @@
 
 ### Пример 1: Новая функциональность
 
+```yaml
+---
+last_updated: 2026-10-14
+scope: specification
+status: DRAFT
+---
+```
+
 ```markdown
 # logger-file-appender-spec — File Appender
 
@@ -16,7 +24,7 @@
 
 ## Preconditions
 
-- Spring Boot application с подключённым `logger-spring-boot-starter`
+- Модуль логирования подключён и инициализирован
 - Свойство `logger.file.enabled=true` установлено в конфигурации
 - Директория для логов доступна для записи (`logger.file.dir`)
 
@@ -28,65 +36,34 @@
 |---|---|---|---|
 | `dir` | `String` | `./logs` | Директория для хранения логов |
 | `filename-pattern` | `String` | `app-{date}_{timestamp}.log` | Шаблон имени файла |
-| `date-pattern` | `String` | `yyyy-MM-dd` | Паттерн даты в имени файла |
-| `encoding` | `String` | `UTF-8` | Кодировка файла |
-| `level` | `LoggingLevel` | `INFO` | Минимальный уровень логирования |
-| `include-entities` | `boolean` | `false` | Включать дополнительные объекты |
-| `pretty-entities` | `boolean` | `false` | Pretty-print объектов |
 | `buffer-size` | `int` | `8192` | Размер буфера записи в байтах |
-| `log-formatter` | `String` | `%date %level %serviceCode: %message %entity` | Шаблон строки лога |
-
-### Шаблон log-formatter
-
-Поддерживаемые токены:
-- `%date` — timestamp события
-- `%level` — уровень логирования
-- `%serviceCode` — код сервиса
-- `%message` — текст сообщения
-- `%entity` — сериализованные объекты (JSON)
 
 ## Behavior
 
 ### Создание файла
 
 1. При первом вызове `append(event)`:
-   - Формируется имя файла по `filename-pattern`
-   - `{date}` заменяется на текущую дату по `date-pattern`
-   - `{timestamp}` заменяется на `System.currentTimeMillis()`
-   - Создаётся файл с указанной `encoding`
-   - Открывается `BufferedWriter` с `buffer-size`
+    - Формируется имя файла по `filename-pattern`
+    - `{date}` заменяется на текущую дату
+    - Создаётся файл с указанной `encoding`
+    - Открывается буферизованный writer
 
 2. При последующих вызовах:
-   - Событие записывается в открытый файл
-   - Если `pretty-entities=true`, объекты форматируются с отступами
-   - Если `include-entities=false`, entities игнорируются
+    - Событие записывается в открытый файл
+    - При заполнении буфера он сбрасывается
 
 ### Ротация файлов
 
 1. При создании нового файла проверяется текущая дата
 2. Если дата изменилась с момента последнего создания:
-   - Текущий файл закрывается
-   - Создаётся новый файл с датой в имени
-3. Старые файлы не удаляются автоматически
-
-### Запись события
-
-1. Формируется строка по `log-formatter`:
-   - Токены заменяются на значения из `LogEvent`
-   - Entities сериализуются в JSON (если включены)
-2. Строка записывается в буфер
-3. При заполнении буфера или вызове `flush()`:
-   - Буфер сбрасывается в файл
-   - Если ошибка записи — логируется на `System.err`
+    - Текущий файл закрывается
+    - Создаётся новый файл с датой в имени
 
 ## Business rules
 
 - Файл создаётся только при первом событии, не при инициализации
-- Имя файла уникально для каждой даты и сессии (timestamp)
 - Если `dir` не существует — создаётся автоматически
 - Если `dir` недоступен для записи — бросается `LoggerAppenderException`
-- Пустой текст сообщения допустим
-- Пустой список entities допустим
 - `buffer-size` должен быть > 0, иначе бросается `LoggerAppenderException`
 
 ## Errors
@@ -95,8 +72,7 @@
 |---|---|---|
 | Директория недоступна для записи | `LoggerAppenderException` | Файл не создаётся, событие не записывается |
 | `buffer-size <= 0` | `LoggerAppenderException` | Исключение бросается при создании аппендера |
-| Ошибка записи в файл | `LoggerAppenderException` | Ошибка логируется на `System.err`, обработка продолжается |
-| Ошибка сериализации entities | `LoggerAppenderException` | Entities не включаются в запись, остальное записывается |
+| Ошибка записи в файл | `LoggerAppenderException` | Ошибка логируется, обработка продолжается |
 
 ## Acceptance criteria
 
@@ -104,43 +80,27 @@
 - [ ] Имя файла формируется по шаблону с датой и timestamp
 - [ ] Директория создаётся автоматически, если не существует
 - [ ] События записываются в файл с указанной кодировкой
-- [ ] `log-formatter` корректно заменяет токены
-- [ ] `pretty-entities=true` форматирует объекты с отступами
-- [ ] `include-entities=false` игнорирует объекты
 - [ ] Ротация происходит при смене даты
-- [ ] Ошибка записи логируется на `System.err`
+- [ ] Ошибка записи логируется, обработка продолжается
 - [ ] `buffer-size` влияет на размер буфера записи
-
-## Examples
-
-### Конфигурация в YAML
-
-```yaml
-logger:
-  file:
-    enabled: true
-    dir: ./logs
-    filename-pattern: app-{date}_{timestamp}.log
-    date-pattern: yyyy-MM-dd
-    encoding: UTF-8
-    level: DEBUG
-    include-entities: true
-    pretty-entities: true
-    buffer-size: 8192
-    log-formatter: "%date [%level] %serviceCode: %message %entity"
 ```
 
-### Использование
-
-```python
-# Пример на Python (аналогично для других языков)
-log_service.info("MyService", uuid, "Сообщение", some_object)
-# Результат:
-# 2026-10-09 15:30:00 [INFO] MyService: Сообщение {"key":"value"}
-```
-```
+**Почему хорошо:**
+- Описывает **что** делает система, а не **как**
+- Нет упоминаний классов, фреймворков, библиотек
+- Все формулировки однозначны
+- Каждый критерий проверяем
+- Фронтматтер с правильным статусом `DRAFT`
 
 ### Пример 2: Обновление существующей спецификации
+
+```yaml
+---
+last_updated: 2026-10-14
+scope: specification
+status: DRAFT
+---
+```
 
 ```markdown
 # http-cookies-spec — Cookie Management
@@ -158,7 +118,7 @@ log_service.info("MyService", uuid, "Сообщение", some_object)
 
 ### Изменено
 - `getCookies()` теперь возвращает `List<HttpCookie>` вместо `Map`
-- Cookie-хранилище использует `CopyOnWriteArrayList` вместо `ArrayList`
+- Cookie-хранилище использует thread-safe коллекцию
 
 ### Удалено
 - Метод `getCookie(String name)` — использовать `getCookies()` вместо него
@@ -185,26 +145,24 @@ log_service.info("MyService", uuid, "Сообщение", some_object)
 | `getCookies(String host)` | `List<HttpCookie>` | Cookies для конкретного хоста |
 | `getAllCookies()` | `Map<String, List<HttpCookie>>` | Все cookies (immutable map) |
 | `clearCookies(String host)` | `void` | Очистить cookies для хоста |
-| `getClientUuid()` | `String` | UUID клиента |
 
 ## Behavior
 
 ### Сохранение cookie
 
 1. При получении ответа с `Set-Cookie` заголовком:
-   - Проверяется cookie-политика
-   - Если политика разрешает — cookie сохраняется в хранилище
-   - Хранилище: `ConcurrentHashMap<String, CopyOnWriteArrayList<HttpCookie>>`
-   - Ключ — host (из URL запроса)
+    - Проверяется cookie-политика
+    - Если политика разрешает — cookie сохраняется в хранилище
+    - Хранилище: карта по хосту
 
 2. При отправке запроса:
-   - Cookies для хоста добавляются как `Cookie` header
-   - Если cookies нет — header не добавляется
+    - Cookies для хоста добавляются как `Cookie` header
+    - Если cookies нет — header не добавляется
 
 ### Получение cookie
 
 1. `getCookies(host)` — возвращает копию списка cookie для хоста
-2. `getAllCookies()` — возвращает **immutable** map: `Collections.unmodifiableMap()`
+2. `getAllCookies()` — возвращает **immutable** map
 3. Если host не найден — возвращается пустой список / пустая карта
 
 ### Очистка cookie
@@ -218,7 +176,6 @@ log_service.info("MyService", uuid, "Сообщение", some_object)
 - Глобальный `CookieHandler` не используется
 - `getAllCookies()` всегда возвращает immutable map
 - Cookie привязаны к хосту, не к пути
-- `CopyOnWriteArrayList` обеспечивает thread-safe чтение
 
 ## Errors
 
@@ -237,31 +194,13 @@ log_service.info("MyService", uuid, "Сообщение", some_object)
 - [ ] `clearCookies(unknown-host)` не бросает исключение
 - [ ] Cookie изолированы между клиентами
 - [ ] Чтение cookie thread-safe
-
-## Examples
-
-### Настройка политики
-
-```python
-# Пример на Python (аналогично для других языков)
-config = HttpClientConfig("MyService")
-    .set_root("https://api.example.com")
-    .set_cookie_policy(CookiesPolicies.ACCEPT_NONE)
 ```
 
-### Управление cookie
-
-```python
-# Получение cookies
-cookies = client.get_cookies("api.example.com")
-
-# Все cookies
-all_cookies = client.get_all_cookies()
-
-# Очистка
-client.clear_cookies("api.example.com")
-```
-```
+**Почему хорошо:**
+- Есть секция `Changes from previous version` с чётким описанием изменений
+- Статус `DRAFT` — изменения существенные
+- Нет деталей реализации (не указано, какая именно thread-safe коллекция используется)
+- Все критерии проверяемы
 
 ## Плохие примеры
 
@@ -288,6 +227,7 @@ HTTP-клиент для работы с API.
 - Нет конкретных ошибок и исключений
 - Критерии не проверяемые ("работает хорошо", "обрабатывается правильно")
 - Нет business rules
+- Нет фронтматтера
 
 ### Пример 2: Описание реализации вместо поведения
 
@@ -331,6 +271,25 @@ HTTP-клиент для работы с API.
 - `обычно`, `как правило`, `по возможности`, `примерно` — неопределённые формулировки
 - Каждое требование должно быть проверяемым
 - Нельзя определить, выполнено требование или нет
+
+### Пример 4: Детали реализации в примере
+
+```markdown
+# Bad Spec — Детали реализации
+
+## Behavior
+
+### Создание файла
+1. Открывается `BufferedWriter` с `Files.newOutputStream(path)`
+2. Используется `ConcurrentHashMap<String, CopyOnWriteArrayList<HttpCookie>>`
+3. Вызывается `System.currentTimeMillis()` для timestamp
+```
+
+**Почему плохо:**
+- Упоминает конкретные классы Java (`BufferedWriter`, `ConcurrentHashMap`)
+- Упоминает API (`Files.newOutputStream()`, `System.currentTimeMillis()`)
+- Это детали реализации, а не поведение системы
+- Вместо этого: "Открывается буферизованный writer", "Хранилище — карта по хосту"
 
 ## Шаблоны
 
