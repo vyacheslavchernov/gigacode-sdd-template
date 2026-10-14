@@ -1,4 +1,4 @@
-# Templates — Skill Refactor
+# Templates — Skill Audit
 
 Шаблоны отчётов и правила согласованности.
 
@@ -9,7 +9,7 @@ See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 ## Формат отчёта аудита
 
 ```
-# Skill Refactor Report: {skill-name}
+# Skill Audit Report: {skill-name}
 
 ## Summary
 - SKILL.md: {N} строк (лимит: 200)

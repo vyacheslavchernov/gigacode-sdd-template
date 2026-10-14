@@ -4,11 +4,11 @@ See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 
 ## Примеры хороших скиллов
 
-### Пример 1: Компактный скилл (skill-refactor)
+### Пример 1: Компактный скилл (skill-audit)
 
 **Структура:**
 ```
-.gigacode/skills/skill-refactor/
+.gigacode/skills/skill-audit/
 ├── SKILL.md              # 64 строки
 └── references/
     ├── workflows.md

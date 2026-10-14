@@ -1,4 +1,4 @@
-# Workflows — Skill Refactor
+# Workflows — Skill Audit
 
 Детальные шаги аудита и рефакторинга скиллов.
 

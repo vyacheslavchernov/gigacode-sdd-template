@@ -1,4 +1,4 @@
-# Rules — Skill Refactor
+# Rules — Skill Audit
 
 Правила рефакторинга скиллов.
 
@@ -13,7 +13,7 @@ See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 | Секция в SKILL.md | Куда перенести |
 |---|---|
 | Детальный workflow (пошаговые шаги) | `references/workflows.md` |
-| Промпты для Explore-агентов | `references/prompts.md` |
+
 | Примеры (хорошие/плохие) | `references/examples.md` |
 | Шаблоны (файлы, YAML, отчёты) | `references/templates.md` |
 | Чек-листы и таблицы статусов | `references/checklists.md` |
@@ -34,7 +34,7 @@ See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 - Полные пошаговые workflow (-> workflows.md)
 - Полные примеры с кодом (-> examples.md)
 - Шаблоны файлов (-> templates.md)
-- Детальные промпты для агентов (-> prompts.md)
+
 - Развёрнутые чек-листы (-> checklists.md)
 
 ## 4. Кросс-ссылки
@@ -77,5 +77,4 @@ See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 
 **Исключения:**
 - Явное указание примеров (другие скиллы как reference)
-- Необходимость обратиться к документации проекта (`docs/`) или гайдлайнам (`guidelines/`) для проверки дублирования контента
-- Необходимость обратиться к коду проекта для проверки соответствия (код ↔ спецификация ↔ тесты)
+- Необходимость обратиться к документации проекта (`docs/`) или гайдлайнам (`guidelines/`) для проверки дублирования конте

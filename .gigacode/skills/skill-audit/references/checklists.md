@@ -1,4 +1,4 @@
-# Checklists — Skill Refactor
+# Checklists — Skill Audit
 
 Чек-листы для аудита скиллов.
 

@@ -1,4 +1,4 @@
-# Examples — Skill Refactor
+# Examples — Skill Audit
 
 Примеры до и после рефакторинга.
 

@@ -110,12 +110,12 @@ ls .gigacode/skills/
 - Описание — максимум 1 строка
 - Формат: таблица с именами скиллов и описанием
 
-### Шаг 8: Аудит через skill-refactor
+### Шаг 8: Аудит через skill-audit
 
 **ИСПОЛЬЗУЙ СУБ-АГЕНТА:**
 
 ```
-task(description="Audit skill: {skill-name}", prompt="Используй скилл skill-refactor для аудита нового скилла {skill-name} в .gigacode/skills/{skill-name}/. Выполни полную проверку: размер SKILL.md, дублирование, согласованность ссылок, кросс-ссылки. Сфокусируйся на качестве структуры скилла.", subagent_type="general")
+task(description="Audit skill: {skill-name}", prompt="Используй скилл skill-audit для аудита нового скилла {skill-name} в .gigacode/skills/{skill-name}/. Выполни полную проверку: размер SKILL.md, дублирование, согласованность ссылок, кросс-ссылки. Сфокусируйся на качестве структуры скилла.", subagent_type="general")
 ```
 
 ### Шаг 9: Цикл автофиксов
@@ -172,7 +172,7 @@ if audit_status != PASS:
 | Тип | Примеры | Требования |
 |---|---|---|
 | **Минорные** | исправление опечаток, обновление описания, добавление триггеров | Без аудита (или быстрый аудит) |
-| **Мажорные** | добавление сценариев, изменение структуры, добавление/удаление references/ | Обязательный аудит через skill-refactor |
+| **Мажорные** | добавление сценариев, изменение структуры, добавление/удаление references/ | Обязательный аудит через skill-audit |
 
 ### Шаг 3: Уточнение у пользователя
 
@@ -206,7 +206,7 @@ if audit_status != PASS:
 **ИСПОЛЬЗУЙ СУБ-АГЕНТА:**
 
 ```
-task(description="Audit skill edit: {skill-name}", prompt="Используй скилл skill-refactor для аудита изменений в скилле {skill-name} в .gigacode/skills/{skill-name}/. Проверь согласованность обновлённых файлов, кросс-ссылки, отсутствие дублирования. Сфокусируйся на том, что изменения не сломали существующую структуру.", subagent_type="general")
+task(description="Audit skill edit: {skill-name}", prompt="Используй скилл skill-audit для аудита изменений в скилле {skill-name} в .gigacode/skills/{skill-name}/. Проверь согласованность обновлённых файлов, кросс-ссылки, отсутствие дублирования. Сфокусируйся на том, что изменения не сломали существующую структуру.", subagent_type="general")
 ```
 
 ### Шаг 7: Цикл автофиксов
@@ -228,12 +228,12 @@ task(description="Audit skill edit: {skill-name}", prompt="Используй с
 ### Шаг 1: Запуск аудита
 
 ```
-task(description="Refactor skill: {skill-name}", prompt="Используй скилл skill-refactor для полного аудита и рефакторинга скилла {skill-name} в .gigacode/skills/{skill-name}/. Проверь: размер SKILL.md, дублирование, согласованность ссылок, кросс-ссылки. При необходимости раздели контент на файлы references/.", subagent_type="general")
+task(description="Refactor skill: {skill-name}", prompt="Используй скилл skill-audit для полного аудита и рефакторинга скилла {skill-name} в .gigacode/skills/{skill-name}/. Проверь: размер SKILL.md, дублирование, согласованность ссылок, кросс-ссылки. При необходимости раздели контент на файлы references/.", subagent_type="general")
 ```
 
 ### Шаг 2: Применение рекомендаций
 
-Получи отчёт от skill-refactor:
+Получи отчёт от skill-audit:
 
 | Проблема | Решение |
 |---|---|
@@ -284,7 +284,7 @@ task(description="Refactor skill: {skill-name}", prompt="Используй ск
 ### Регистрация
 - GIGACODE.md обновлён: {добавлен/обновлён} в `## Доступные скиллы`
 
-### Аудит (skill-refactor)
+### Аудит (skill-audit)
 - Статус: {PASS/WARN/FAIL}
 - Итераций: {N}
 - Исправлено проблем: {N}
