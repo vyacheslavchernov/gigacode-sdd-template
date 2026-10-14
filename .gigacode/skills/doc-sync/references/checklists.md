@@ -1,13 +1,13 @@
 ---
-last_updated: 2026-10-14
-scope: skill
+last_updated: 2026-10-15
+scope: skill-referense
 ---
 
 # Checklists — Doc Sync
 
 Чек-лист завершения обновления документации.
 
-See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
+Обзор и сценарии — в [`SKILL.md`](../SKILL.md).
 
 ---
 

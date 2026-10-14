@@ -1,6 +1,7 @@
 ---
 name: doc-sync
-last_updated: 2026-10-14
+last_updated: 2026-10-15
+scope: skill
 description: Обновление документации проекта в соответствии с изменениями в коде. Триггеры: "обнови документацию", "sync docs", "обнови README модуля", "обнови документацию для {модуль}". Применяется к проектам с аналогичной структурой: docs/, README.md в модулях, спецификаций, GIGACODE.md.
 ---
 
@@ -26,33 +27,26 @@ description: Обновление документации проекта в с�
 - [`guidelines/documentation-guidelines.md`](../../guidelines/documentation-guidelines.md) — структура, фронтматтер, стиль
 - [`guidelines/gigacode-md-guidelines.md`](../../guidelines/gigacode-md-guidelines.md) — правила обновления GIGACODE.md
 
-**Лимиты:** один файл ≤ 200 строк, фронтматтер с `last_updated` и `scope`. GIGACODE.md ≤ 40 строк.
-
 ## Сценарии
 
-### 1. Обновление по diff
-```bash
-git diff HEAD
-# или
-git diff main...{branch}
-```
-
-### 2. Обновление по ветке
-```bash
-git diff main...{branch} --stat
-```
-
-### 3. Обновление модуля
-```
-обнови документацию для модуля {название}
-```
-
-### 4. Полное обновление
-Параллельные `Explore`-агенты для всех модулей.
+| Триггер | Описание |
+|---|---|
+| `git diff HEAD` | Обновление по текущим изменениям |
+| `git diff main...{branch}` | Обновление по ветке |
+| `обнови документацию для модуля {название}` | Обновление конкретного модуля |
+| Полное обновление | Параллельные `Explore`-агенты для всех модулей |
 
 ## Workflow
 
 Детальный пошаговый workflow — в [`references/workflows.md`](references/workflows.md).
+
+## Templates
+
+Шаблоны фронтматтеров для разных типов файлов документации — в [`references/templates.md`](references/templates.md).
+
+## Examples
+
+Примеры «до» и «после» обновления документации — в [`references/examples.md`](references/examples.md).
 
 ## Checklists
 
