@@ -8,7 +8,7 @@ See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 ---
 name: {skill-name}
 last_updated: {YYYY-MM-DD}
-scope: skill
+scope: skill  # или skill-reference
 description: {краткое описание назначения, триггеры}
 ---
 ```
@@ -52,13 +52,23 @@ description: {краткое описание назначения, тригге
 
 Детальный пошаговый workflow — в [`references/workflows.md`](references/workflows.md).
 
-## Examples
+## Шаблоны
+
+Шаблоны файлов и фронтматтеров — в [`references/templates.md`](references/templates.md).
+
+## Примеры
 
 Примеры использования — в [`references/examples.md`](references/examples.md).
 
 ## Checklists
 
 Чек-листы — в [`references/checklists.md`](references/checklists.md).
+
+## Prompts
+
+Промпты для агентов — в [`references/prompts.md`](references/prompts.md).
+
+> **Правило:** Если файл `references/prompts.md` не нужен — секцию не создавай. Любая секция в SKILL.md должна ссылаться на существующий файл в `references/`.
 
 ## Critical Rules
 
@@ -139,25 +149,27 @@ See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 
 ## Создание скилла
 
-- [ ] Название уникально (нет конфликта с существующими)
-- [ ] SKILL.md <= 200 строк
-- [ ] Фронтматтер консистентен (name, last_updated, scope, description)
-- [ ] Есть сценарии использования
-- [ ] Есть уточняющие вопросы
-- [ ] Есть ссылки на guidelines/
-- [ ] Есть ссылки на references/ (если есть)
-- [ ] Есть кросс-ссылки references/ -> SKILL.md
-- [ ] Зарегистрирован в GIGACODE.md
-- [ ] Пройден аудит skill-refactor
+- [ ] {чек-лист}
 
 ## Аудит скилла
 
-- [ ] SKILL.md <= 200 строк
-- [ ] Нет дублирования с references/
-- [ ] Нет дублирования с docs/guidelines
-- [ ] Все ссылки рабочи
-- [ ] Фронтматтер консистентен
-- [ ] Терминология согласована
+- [ ] {чек-лист}
+```
+
+## Шаблон references/prompts.md
+
+```markdown
+# Prompts -- {Skill Name}
+
+See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
+
+## Промпт: {Название промпта}
+
+{Текст промпта для агента}
+
+## Промпт: {Название промпта 2}
+
+{Текст промпта для агента 2}
 ```
 
 ## Фронтматтер
@@ -168,7 +180,7 @@ See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 |---|---|---|
 | `name` | string | Уникальное название скилла (snake_case) |
 | `last_updated` | date | Дата последнего изменения (YYYY-MM-DD) |
-| `scope` | string | Всегда `skill` |
+| `scope` | string | `skill` или `skill-reference` |
 | `description` | string | Краткое описание + триггеры |
 
 **Опциональные поля:**

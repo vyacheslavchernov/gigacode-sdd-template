@@ -65,12 +65,25 @@ See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 
 Все файлы скилла должны иметь консистентный фронтматтер:
 
+**Корневой SKILL.md** — обязательные поля:
+```yaml
+---
+name: {skill-name}
+last_updated: YYYY-MM-DD
+scope: skill  # или skill-reference
+description: {краткое описание + триггеры}
+---
+```
+
+**Файлы references/** — только метаданные:
 ```yaml
 ---
 last_updated: YYYY-MM-DD
-scope: skill  # или skill-reference
+scope: skill-reference
 ---
 ```
+
+> **Правило:** Поля `name` и `description` обязательны только для корневого `SKILL.md`. Файлы `references/*` содержат только `last_updated` и `scope: skill-reference`.
 
 ### Названия
 

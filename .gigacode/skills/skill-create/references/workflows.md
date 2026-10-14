@@ -64,11 +64,14 @@ ls .gigacode/skills/
 ```
 
 **Правила наполнения:**
-- SKILL.md: фронтматтер + ёмкое описание + сценарии + ссылки на references/
+- SKILL.md: фронтматтер + ёмкое описание + сценарии + отдельные секции для каждого типа контента
+- Каждая секция в SKILL.md ссылается на существующий файл в `references/`
+- Если файл `references/*` не нужен — секцию не создавай
 - references/workflows.md: подробные шаги workflow
 - references/examples.md: примеры использования
 - references/templates.md: YAML-фронтматтеры, форматы файлов
 - references/checklists.md: чек-листы завершения
+- references/prompts.md: промпты для агентов (опционально)
 
 ### Шаг 6: Генерация контента
 

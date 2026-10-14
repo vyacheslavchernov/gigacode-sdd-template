@@ -55,10 +55,10 @@ description: Аудит и рефакторинг скиллов — прове�
 
 ## Critical Rules
 
-- **ALWAYS** check SKILL.md size (limit 200 lines)
-- **ALWAYS** check for duplicates before refactoring
-- **ALWAYS** add cross-links when refactoring
-- **NEVER** delete content without approval
-- **NEVER** break existing links
-- **APPLY** refactoring only on user request
-- **PRESENT** audit report before applying changes
+- **ALWAYS** проверяй размер SKILL.md (лимит 200 строк)
+- **ALWAYS** проверяй дублирование перед рефакторингом
+- **ALWAYS** добавляй кросс-ссылки при рефакторинге
+- **NEVER** удаляй контент без согласования
+- **NEVER** ломай существующие ссылки
+- **APPLY** рефакторинг только по запросу пользователя
+- **PRESENT** отчёт аудита перед применением изменений

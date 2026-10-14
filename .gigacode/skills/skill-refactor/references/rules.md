@@ -39,14 +39,29 @@ See [`SKILL.md`](../SKILL.md) -- overview and scenarios.
 
 ## 4. Кросс-ссылки
 
+Каждый тип контента — отдельная секция в SKILL.md. Ссылки на `references/*` размещаются в соответствующих секциях:
+
 **SKILL.md -> references/:**
 
 ```markdown
-## Дополнительные материалы
+## Workflow
 
-Детальные инструкции -- в [`references/workflows.md`](references/workflows.md).
-Примеры и шаблоны -- в [`references/examples.md`](references/examples.md).
+Детальный пошаговый workflow — в [`references/workflows.md`](references/workflows.md).
+
+## Шаблоны
+
+Шаблоны файлов и фронтматтеров — в [`references/templates.md`](references/templates.md).
+
+## Примеры
+
+Примеры до и после рефакторинга — в [`references/examples.md`](references/examples.md).
+
+## Checklists
+
+Чек-лист аудита — в [`references/checklists.md`](references/checklists.md).
 ```
+
+> **Правило:** Если файл `references/prompts.md` не нужен — секцию `## Prompts` не создавай. Каждая секция в SKILL.md должна ссылаться на существующий файл в `references/`.
 
 **references/ -> SKILL.md:**
 
