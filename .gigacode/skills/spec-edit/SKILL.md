@@ -135,11 +135,16 @@ description: Создание и обновление спецификаций �
 
 Используй структуру из specs-guidelines:
 
+```yaml
+---
+last_updated: 2026-10-14
+scope: specification
+status: DRAFT
+---
+```
+
 ```markdown
 # {spec-id}-spec — {Название}
-
-## Status
-DRAFT
 
 ## Purpose
 {что и зачем}
@@ -202,7 +207,7 @@ DRAFT
 ## Спецификация: {spec-id}
 
 ### Статус
-- Статус: `{DRAFT | IMPLEMENTED_STABLE | IMPLEMENTED_NEED_WORK}`
+- Статус: `{DRAFT | IMPLEMENTED_STABLE | IMPLEMENTED_NEED_WORK}` (во фронтматтере YAML)
 - Новый файл: `specs/{domain}/{file}.md`
 - ID: `{spec-id}`
 - Секций: {N}

@@ -124,12 +124,12 @@ docs/
 ```yaml
 ---
 last_updated: 2026-10-08
-scope: module | package | testing | architecture | guidelines
+scope: module | package | testing | architecture | guidelines | specification
 ---
 ```
 
 - `last_updated` — дата в формате `YYYY-MM-DD`. Обновляется при любом изменении документа или связанного кода.
-- `scope` — тип документа: `module`, `package`, `testing`, `architecture`.
+- `scope` — тип документа: `module`, `package`, `testing`, `architecture`, `guidelines`, `specification`.
 
 ### 2.2 Структура заголовка документа
 
@@ -343,7 +343,7 @@ npm start
 
 ### 6.2 Чек-лист перед сохранением
 
-- [ ] Фронтматтер с `last_updated` и `scope`
+- [ ] Фронтматтер с `last_updated` и `scope` (module, package, testing, architecture, guidelines, specification)
 - [ ] Краткое описание в начале (1-2 предложения)
 - [ ] Все публичные сущности описаны
 - [ ] Кросс-ссылки на соседние документы добавлены

@@ -17,11 +17,24 @@ scope: guideline
 
 ### 1.1 Обязательные секции
 
+Каждая спецификация начинается с YAML-фронтматтера:
+
+```yaml
+---
+last_updated: 2026-10-14
+scope: specification
+status: DRAFT | IMPLEMENTED_STABLE | IMPLEMENTED_NEED_WORK
+---
+```
+
+- `last_updated` — дата в формате `YYYY-MM-DD`. Обновляется при любом изменении спецификации.
+- `scope` — всегда `specification` для файлов спецификаций.
+- `status` — одно из: `DRAFT`, `IMPLEMENTED_STABLE`, `IMPLEMENTED_NEED_WORK`.
+
+Затем следует структура:
+
 ```markdown
 # {spec-id}-spec — {Название}
-
-## Status
-{DRAFT | IMPLEMENTED_STABLE | IMPLEMENTED_NEED_WORK}
 
 ## Purpose
 {Что и зачем делает функциональность. 1-2 предложения.}
@@ -348,7 +361,7 @@ specs/
 
 Перед предоставлением спецификации на утверждение:
 
-- [ ] ID сформирован правильно ({domain}-{feature}-spec)
+- [ ] Фронтматтер с `last_updated`, `scope: specification` и `status`
 - [ ] Статус установлен правильно (DRAFT для новой spec)
 - [ ] Purpose описывает ценность, а не реализацию
 - [ ] Нет деталей реализации (классы, фреймворки, библиотеки)
@@ -368,11 +381,16 @@ specs/
 
 ### 7.1 Хорошая спецификация
 
+```yaml
+---
+last_updated: 2026-10-14
+scope: specification
+status: DRAFT
+---
+```
+
 ```markdown
 # logger-file-appender-spec — File Appender
-
-## Status
-DRAFT
 
 ## Purpose
 
