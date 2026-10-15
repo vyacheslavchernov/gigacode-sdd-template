@@ -1,5 +1,5 @@
 ---
-last_updated: 2026-10-14
+last_updated: 2026-10-16
 scope: guideline
 ---
 
@@ -20,7 +20,7 @@ scope: guideline
 ```
 docs/
 ├── README.md                          # Главная: обзор проекта, навигация
-├── architecture.md                    # Архитектура, структура, зависимости, решения
+├── architecture.md                    # Архитектура, структура, зависимости, архитектурные решения
 ├── modules/
 │   ├── README.md                      # Обзор модулей (что есть, зачем)
 │   ├── {module}.md                    # Модуль: назначение, ключевые классы
@@ -98,7 +98,7 @@ docs/
 **Обоснование:**
 - Читаемость: `new HttpClientBuilder().setRoot(url).setTimeout(5000).build()`
 - Расширяемость: новые параметры добавляются без break changes
-- Immutable config: `HttpClientConfig`不可меняется после создания
+- Immutable config: `HttpClientConfig` меняется после создания
 
 **Альтернативы:**
 - Options object: менее читаемый при большом числе параметров
@@ -124,12 +124,12 @@ docs/
 ```yaml
 ---
 last_updated: 2026-10-08
-scope: module | package | testing | architecture | guidelines | specification
+scope: module | package | testing | architecture | guidelines | specification | project
 ---
 ```
 
 - `last_updated` — дата в формате `YYYY-MM-DD`. Обновляется при любом изменении документа или связанного кода.
-- `scope` — тип документа: `module`, `package`, `testing`, `architecture`, `guidelines`, `specification`.
+- `scope` — тип документа: `module`, `package`, `testing`, `architecture`, `guidelines`, `specification`, `project`.
 
 ### 2.2 Структура заголовка документа
 
@@ -178,25 +178,7 @@ scope: module | package | testing | architecture | guidelines | specification
 
 ### 3.4 Документ архитектуры (`architecture.md`)
 
-**Что включать:**
-- **Структура проекта** — обзор директорий, модулей, пакетов. Как организован код.
-- **Зависимости** — внутренние модули, внешние библиотеки, версии.
-- **Архитектурные решения (ADR)** — принятые решения с обоснованием:
-  - Контекст: какая проблема стояла
-  - Решение: что было выбрано
-  - Обоснование: почему именно так, почему не другие варианты
-  - Альтернативы: рассмотренные варианты и почему отклонены
-
-**Пример ADR:**
-
-```markdown
-### ADR-1: Использование builder-паттерна для конфигурации
-
-**Контекст:** Клиенту нужна гибкая настройка с множеством опциональных параметров.
-**Решение:** Использовать builder-паттерн с chainable методами.
-**Обоснование:** Читаемость, расширяемость, immutable config.
-**Альтернативы:** Options object (менее читаемый), multiple constructors (explosion).
-```
+**Смотри пункт 2.3 текущего документа**
 
 ### 3.5 Главный `docs/README.md`
 
@@ -224,29 +206,24 @@ scope: module | package | testing | architecture | guidelines | specification
 
 ## Установка
 
-```bash
-npm install
-# или: mvn clean install, pip install -e ., и т.д.
-```
+{Описание процесса установки, если такой требуется}
+
+{Примеры команд для установки}
+
 
 ## Сборка и запуск
 
-```bash
-npm run build
-npm start
-# или: mvn spring-boot:run, docker compose up, и т.д.
-```
+{Примеры команд для сборки и запуска}
 
 ## Использование
 
-```bash
-# пример команды или вызова
+{Примеры команд или вызова}
+
+{Примеры кода}
+
 ```
 
-```typescript
-// пример кода
-```
-```
+**Блоки кода и команды нужно выделять с указанием типа языка программирования!**
 
 **Что НЕ включать:**
 - Длинные описания архитектуры (это в `docs/`)
@@ -322,7 +299,7 @@ npm start
 
 ### 5.3 Конкретика вместо общих фраз
 
-| ❌ Плохо | ✅ Хорошо |
+| Плохо | Хорошо |
 |---|---|
 | "Класс для работы с HTTP" | "Обёртка над встроенным HTTP-клиентом, поддерживает GET/POST с JSON-десериализацией" |
 | "Много методов" | "6 публичных методов: `get()`, `post()`, `buildRequest()`, `execute()`, `setInterceptor()`, `getCastedBody()`" |

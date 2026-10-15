@@ -1,7 +1,6 @@
 ---
-last_updated: 2026-10-15
+last_updated: 2026-10-16
 scope: skill-referense
-name: doc-sync
 ---
 
 # Workflows — Doc Sync

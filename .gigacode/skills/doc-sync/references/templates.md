@@ -1,5 +1,5 @@
 ---
-last_updated: 2026-10-15
+last_updated: 2026-10-16
 scope: skill-referense
 ---
 
@@ -17,7 +17,7 @@ scope: skill-referense
 
 ```yaml
 ---
-last_updated: 2026-10-15
+last_updated: {YYYY-MM-DD}
 scope: module
 ---
 ```
@@ -26,7 +26,7 @@ scope: module
 
 ```yaml
 ---
-last_updated: 2026-10-15
+last_updated: {YYYY-MM-DD}
 scope: package
 ---
 ```
@@ -35,7 +35,7 @@ scope: package
 
 ```yaml
 ---
-last_updated: 2026-10-15
+last_updated: {YYYY-MM-DD}
 scope: architecture
 ---
 ```
@@ -44,7 +44,7 @@ scope: architecture
 
 ```yaml
 ---
-last_updated: 2026-10-15
+last_updated: {YYYY-MM-DD}
 scope: testing
 ---
 ```
@@ -53,7 +53,7 @@ scope: testing
 
 ```yaml
 ---
-last_updated: 2026-10-15
+last_updated: {YYYY-MM-DD}
 scope: guidelines
 ---
 ```
@@ -62,7 +62,7 @@ scope: guidelines
 
 ```yaml
 ---
-last_updated: 2026-10-15
+last_updated: {YYYY-MM-DD}
 scope: specification
 ---
 ```
@@ -71,7 +71,7 @@ scope: specification
 
 ```yaml
 ---
-last_updated: 2026-10-15
+last_updated: {YYYY-MM-DD}
 scope: module
 ---
 ```
@@ -80,7 +80,7 @@ scope: module
 
 ```yaml
 ---
-last_updated: 2026-10-15
+last_updated: {YYYY-MM-DD}
 scope: project
 ---
 ```

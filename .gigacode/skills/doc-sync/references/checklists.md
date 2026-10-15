@@ -1,5 +1,5 @@
 ---
-last_updated: 2026-10-15
+last_updated: 2026-10-16
 scope: skill-referense
 ---
 
@@ -27,6 +27,6 @@ scope: skill-referense
 - [ ] GIGACODE.md (если изменилась структура каталогов, гайдлайны, скиллы или команды)
 ```
 
-**Если хотя бы один пункт не отмечен — не завершай doc-sync.**
+**Если хотя бы один пункт не отмечен — не завершай doc-sync. Завершить можно только после выполнения всех пунктов!**
 
 > **Детали:** [`guidelines/documentation-guidelines.md`](../../guidelines/documentation-guidelines.md) §6.2

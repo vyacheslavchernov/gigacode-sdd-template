@@ -1,6 +1,6 @@
 ---
-last_updated: 2026-10-15
-scope: -referense
+last_updated: 2026-10-16
+scope: skill-referense
 ---
 
 # Examples — Doc Sync
@@ -86,10 +86,9 @@ Spring Boot starter для HTTP-клиента...
 
 | Скилл | Назначение |
 |---|---|
-| `doc-sync` | Обновление документации проекта |
 | `spec-edit` | Создание и обновление спецификаций |
 | `spec-impl` | Реализация кода по спецификации |
-```
+| `doc-sync` | Обновление документации проекта |```
 
 ---
 
